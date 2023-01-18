@@ -3,8 +3,12 @@ class CubicBezier {
         p1 = new Vector2(-1, -1),
         p2 = new Vector2(-.8, 1),
         p3 = new Vector2(.8, -1),
-        p4 = new Vector2(1, 1))
+        p4 = new Vector2(1, 0))
     { [this.p1, this.p2, this.p3, this.p4] = [p1, p2, p3, p4]; }
+
+    getPointsAsArray(){
+        return [this.p1, this.p2, this.p3, this.p4];
+    }
 
     getPoint(t) {
         let p5 = this.p1.lerp(this.p2, t);
