@@ -1,0 +1,30 @@
+:root {
+    --default-color: rgb(10, 10, 10);
+    --line-color: rgb(255, 255, 255);
+}
+
+.outlined {
+    height: calc(100% - 30px);
+    width: calc(100% - 30px);
+    background-color: var(--default-color);
+    box-shadow: 0 0 0 5px var(--line-color),
+                0 0 0 9px var(--default-color),
+                0 0 0 12px var(--line-color),
+                0 0 0 14px var(--default-color),
+                0 0 0 15px var(--line-color);
+
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    background-color: var(--default-color);
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+body{
+    background-color: var(--default-color);
+}
