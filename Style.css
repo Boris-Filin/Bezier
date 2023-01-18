@@ -25,6 +25,17 @@
     display: flex;
 }
 
+#mouseInfo{
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    /* pos */
+}
+
+p{
+    color: var(--line-color);
+}
+
 body{
     background-color: var(--default-color);
 }

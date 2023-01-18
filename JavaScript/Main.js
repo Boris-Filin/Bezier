@@ -9,6 +9,9 @@ const detailCol = "rgb(150, 150, 150, 0.5)";
 function main(){
     
     var canvas = document.getElementById("mainCanvas");
+    canvas.addEventListener("mousedown", handleMouseDown);
+    canvas.addEventListener("mouseup", handleMouseUp);
+    canvas.addEventListener("mousemove", handleMousePos);
     
     var ctx = canvas.getContext("2d");
    
