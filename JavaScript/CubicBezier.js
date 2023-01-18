@@ -10,13 +10,14 @@ class CubicBezier {
         return [this.p1, this.p2, this.p3, this.p4];
     }
 
-    getPoint(t) {
-        let p5 = this.p1.lerp(this.p2, t);
-        let p6 = this.p2.lerp(this.p3, t);
-        let p7 = this.p3.lerp(this.p4, t);
-        let p8 = p5.lerp(p6, t);
-        let p9 = p6.lerp(p7, t);
-        return p8.lerp(p9, t);
+    getPoint(t){
+        let tPow2 = t * t;
+        let tPow3 = tPow2 * t;
+        let coef1 = 1 - 3 * t + 3 * tPow2 - tPow3;
+        let coef2 = 3 * t - 6 * tPow2 + 3 * tPow3;
+        let coef3 = 3 * tPow2 - 3 * tPow3;
+        return Vector2.addAll([this.p1.mul(coef1), this.p2.mul(coef2),
+            this.p3.mul(coef3), this.p4.mul(tPow3)]);
     }
 
 }

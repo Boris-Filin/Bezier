@@ -44,4 +44,13 @@ class Vector2{
         this.y *= x;
     }
 
+
+    static addAll(arr){
+        if(arr.length == 0) return undefined;
+        let res = arr[0].copy();
+        for(let vec of arr.slice(1))
+            res.addWithSelf(vec);
+        return res;
+    }
+
 }

@@ -1,4 +1,4 @@
-const gridZoom = 5;
+const gridZoom = 2;
 const gridPos = new Vector2();
 const pointRad = 0.075;
 const lineWidth = 3;
@@ -20,7 +20,9 @@ function main(){
     ctx.lineWidth = 3;
     
     let curve = new CubicBezier();
-    drawCurve(ctx, curve, 30);
+    let start = new Date().getTime();
+    drawCurve(ctx, curve, 100);
+    alert(new Date().getTime() - start);
 }
 
 function worldToScreenPos(canvas, point){
