@@ -1,3 +1,11 @@
+function draw(ctx, curves){
+    ctx.fillStyle = defaultCol;
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    for(let curve of curves)
+        drawCurve(ctx, curve, 100);
+    drawCircle(ctx, mousePos, 5, "red");
+}
+
 
 function drawCurve(ctx, curve, precision=10){
     drawPoint(ctx, curve.p1, true);
@@ -7,7 +15,7 @@ function drawCurve(ctx, curve, precision=10){
     
     ctx.beginPath();
     ctx.strokeStyle = detailCol;
-    let screenPoints = curve.getPointsAsArray().map((v) => worldToScreenPos(ctx.canvas, v));
+    let screenPoints = curve.getPointsAsArray().map((v) => worldToScreenPos(v));
     ctx.moveTo(screenPoints[0].x, screenPoints[0].y);
     for(let vec of screenPoints){
         ctx.lineTo(vec.x, vec.y);
@@ -16,22 +24,21 @@ function drawCurve(ctx, curve, precision=10){
     ctx.strokeStyle = lineCol;
 
     ctx.beginPath();
-    let origin = worldToScreenPos(ctx.canvas, curve.p1);
+    let origin = worldToScreenPos(curve.p1);
     ctx.moveTo(origin.x, origin.y);
     for(let i = 1; i < precision + 1; i++){
         let t = i / precision;
         let p = curve.getPoint(t);
-        let sp = worldToScreenPos(ctx.canvas, p);
+        let sp = worldToScreenPos(p);
         ctx.lineTo(sp.x, sp.y);
     }
     ctx.stroke();
 }
 
 function drawPoint(ctx, vec, outline=false, scale=1, col=lineCol){
-    let smallerSide = Math.min(ctx.canvas.width, ctx.canvas.height);
-    let fac = smallerSide / gridZoom;
+    let fac = getFac();
     rad = pointRad * fac * scale;
-    let origin = worldToScreenPos(ctx.canvas, vec);
+    let origin = worldToScreenPos(vec);
 
     drawCircle(ctx, origin, rad, col);
     if(outline){

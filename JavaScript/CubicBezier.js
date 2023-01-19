@@ -10,6 +10,10 @@ class CubicBezier {
         return [this.p1, this.p2, this.p3, this.p4];
     }
 
+    getPointById(id){
+        return this.getPointsAsArray()[id];
+    }
+
     getPoint(t){
         let tPow2 = t * t;
         let tPow3 = tPow2 * t;
@@ -18,6 +22,19 @@ class CubicBezier {
         let coef3 = 3 * tPow2 - 3 * tPow3;
         return Vector2.addAll([this.p1.mul(coef1), this.p2.mul(coef2),
             this.p3.mul(coef3), this.p4.mul(tPow3)]);
+    }
+
+    setPoint(i, vec){
+        switch(i) {
+            case 0:
+                this.p1 = vec; break;
+            case 1:
+                this.p2 = vec; break;
+            case 2:
+                this.p3 = vec; break;
+            case 3:
+                this.p4 = vec; break;      
+        }
     }
 
 }

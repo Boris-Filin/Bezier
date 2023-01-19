@@ -4,12 +4,12 @@ class Vector2{
         this.y = y;
     }
 
-    copy(){
-        return new Vector2(this.x, this.y);
+    get magnitude() {
+        return Math.sqrt(this.x ** 2 + this.y ** 2);
     }
 
-    magnitude() {
-        return Math.sqrt(this.x ** 2 + this.y ** 2);
+    copy(){
+        return new Vector2(this.x, this.y);
     }
 
     add(vec){
@@ -42,6 +42,14 @@ class Vector2{
     mulWithSelf(x){
         this.x *= x;
         this.y *= x;
+    }
+
+    isInRectangle(vec, width, height=-1){
+        if(height == -1) height = width;
+        width /= 2;
+        height /= 2;
+        return !(vec.x < this.x - width || vec.x > this.x + width ||
+            vec.y < this.y - height || vec.y > this.y + height);
     }
 
 
